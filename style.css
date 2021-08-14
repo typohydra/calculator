@@ -1,31 +1,176 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126  License: none (public domain)*/html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup,menu, nav, output, ruby, section, summary,time, mark, audio, video {  margin: 0;  padding: 0;  border: 0;  font-size: 100%;  font: inherit;  vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {  display: block;}body {  line-height: 1;}ol, ul {  list-style: none;}blockquote, q {  quotes: none;}blockquote:before, blockquote:after,q:before, q:after {  content: '';  content: none;}table {  border-collapse: collapse;  border-spacing: 0;}
+
+:root {
+    --color-orange: #FFCB77;
+    --color-cyan: #17C3B2;
+    --color-blue: #227C9D;
+    --color-pink: #FE6D73;
+    --color-white: #FEF9EF;
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+html{
+    height: 100%;
+    background: linear-gradient(#d5cfe1, #b6a6ca);
+}
+
+
 #calc-container {
-    border: solid;
+    border: outset 10px var(--color-blue);
+    border-radius: 40px;
     width: 400px;
-    height: 500px;
+    height: 550px;
+    min-width: 400px;
+    min-height: 550px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(--color-blue);
 }
 
 #display {
-    border: solid;
-    width: 350px;
+    border: 10px outset var(--color-pink);
+    border-radius: 20px;
+    padding: 5px;
+    width: 320px;
     height: 100px;
-    margin: 10px 0;
+    margin: 0 0 10px 0;
+    background-color: var(--color-white);
+}
+
+#currentEquation {
+    height: 40%;
+    color: gray;
+    text-align: right;
+    padding: 5px 0 0 0;
+}
+#currentInput {
+    height: 60%;
+    font-size: 30px;
+    text-align: right;
+    padding: 5px 0 0 0;
 }
 
 #calc-btns-container {
-    border: solid;
-    width: 350px;
+    width: 320px;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: repeat(4, 70px);
+    grid-template-columns: repeat(4, 70px);
+    grid-gap: 13px;
 }
 
 #calc-btns-container button {
     width: 70px;
     height: 70px;
-    margin: 5px;
+    border-radius: 20px;
+}
+#calc-btns-container button:hover {
+    color: var(--color-white);
+    font-weight: 1000;
+}
+
+.number {
+    background-color: var(--color-cyan);
+    border: outset var(--color-blue);
+    font-size: 30px;
+}
+.number:hover {
+    border: inset var(--color-blue);
+}
+
+.operator {
+    background-color: var(--color-orange);
+    border: outset var(--color-blue);
+}
+.operator:hover {
+    background-color: var(--color-orange);
+    border: inset var(--color-blue);
+}
+
+.equals, .clear {
+    background-color: var(--color-pink);
+    border: outset var(--color-cyan);
+}
+.equals:hover, .clear:hover {
+    background-color: var(--color-pink);
+    border: inset var(--color-cyan);
+}
+
+#number-0 {
+    grid-row: 4;
+    grid-column: 2;
+}
+#number-1 {
+    grid-row: 3;
+    grid-column: 1;
+}
+#number-2 {
+    grid-row: 3;
+    grid-column: 2;
+}
+#number-3 {
+    grid-row: 3;
+    grid-column: 3;
+}
+#number-4 {
+    grid-row: 2;
+    grid-column: 1;
+}
+#number-5 {
+    grid-row: 2;
+    grid-column: 2;
+}
+#number-6 {
+    grid-row: 2;
+    grid-column: 3;
+}
+#number-7 {
+    grid-row: 1;
+    grid-column: 1;
+}
+#number-8 {
+    grid-row: 1;
+    grid-column: 2;
+}
+#number-9 {
+    grid-row: 1;
+    grid-column: 3;
+}
+#clear {
+    grid-row: 4;
+    grid-column: 1;
+}
+#equals {
+    grid-row: 4;
+    grid-column: 3;
+}
+#add {
+    grid-row: 4;
+    grid-column: 4;
+}
+#subtract {
+    grid-row: 3;
+    grid-column: 4;
+}
+#multiply {
+    grid-row: 2;
+    grid-column: 4;
+}
+#divide {
+    grid-row: 1;
+    grid-column: 4;
 }
