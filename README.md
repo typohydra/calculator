@@ -1,2 +1,2 @@
-#Calculator
-##HTML, CSS and Vanilla Javascript.
+# Calculator
+## HTML, CSS and Vanilla Javascript.
