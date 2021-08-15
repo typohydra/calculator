@@ -111,6 +111,14 @@ function listenToPoint() {
     })
 }
 
+function listenToBackspace() {
+    const backspace = document.querySelector('.backspace');
+    backspace.addEventListener('click', () => {
+        currentInputDisplay.innerText = (currentInputDisplay.innerText).slice(0, -1); //removes last character
+        inputValue = currentInputDisplay.innerText;
+    })
+}
+
 function calculator() {
 
     //numbers
@@ -127,6 +135,9 @@ function calculator() {
 
     //floating point
     listenToPoint();
+
+    //backspace
+    listenToBackspace();
 }
 
 calculator();
