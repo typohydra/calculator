@@ -1,5 +1,5 @@
-#Calculator
-##HTML, CSS and Vanilla Javascript.
+# Calculator
+## HTML, CSS and Vanilla Javascript.
 
-###NEW:
+### NEW:
     flaoting point button
