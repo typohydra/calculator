@@ -98,6 +98,27 @@ function listenToClear() {
     })
 }
 
+function listenToPoint() {
+    const point = document.querySelector('.point');
+    point.addEventListener('click', () => {
+        if(currentInputDisplay.innerText === '') {
+            displayToScreen('0.');
+            inputValue += 0.0;
+        }
+        else if(!(currentInputDisplay.innerText).includes('.')) {
+            displayToScreen('.');
+        }
+    })
+}
+
+function listenToBackspace() {
+    const backspace = document.querySelector('.backspace');
+    backspace.addEventListener('click', () => {
+        currentInputDisplay.innerText = (currentInputDisplay.innerText).slice(0, -1); //removes last character
+        inputValue = currentInputDisplay.innerText;
+    })
+}
+
 function calculator() {
 
     //numbers
@@ -111,6 +132,12 @@ function calculator() {
 
     //clear
     listenToClear();
+
+    //floating point
+    listenToPoint();
+
+    //backspace
+    listenToBackspace();
 }
 
 calculator();
