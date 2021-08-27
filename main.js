@@ -61,16 +61,25 @@ function listenToOperators() {
     const operators = document.querySelectorAll('.operator');
     operators.forEach( operator => {
         operator.addEventListener('click', () => {
-            if(answer === undefined || answer === null) { //first ever input
+            if(inputValue === undefined || inputValue == "")
+            {
+                //pass(operator won't show up if number is not entered)
+                //checked against the empty string because of the backspace
+            }
+            else if(answer === undefined || answer === null) { //first ever input
                 answer = inputValue;
             }
             else if (inputValue !== undefined && inputValue !== null){ //chained inputs
                 answer = operate(operatorValue, answer, inputValue);
                 currentInputDisplay.innerText = answer;
             }
-            operatorValue = operator.innerText;
-            inputValue = null;
-            currentEquationDisplay.innerText =  answer + " " + operatorValue;
+
+            if((inputValue !== undefined && inputValue !== "") || (inputValue === "" && currentEquationDisplay.innderText !== ""))
+            {
+                operatorValue = operator.innerText;
+                inputValue = null;
+                currentEquationDisplay.innerText =  answer + " " + operatorValue;
+            }
         })
     })
 }
@@ -90,7 +99,7 @@ function listenToEqual() {
 function listenToClear() {
     const clear = document.querySelector('.clear');
     clear.addEventListener('click', () => {
-        inputValue = null;
+        inputValue = undefined;
         answer = null;
         operatorValue = null;
         currentInputDisplay.innerText = '';
