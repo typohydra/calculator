@@ -46,7 +46,8 @@ html{
     border-radius: 20px;
     padding: 5px;
     width: 320px;
-    height: 100px;
+    height: auto; 
+    min-height: 100px;
     margin: 0 0 10px 0;
     background-color: var(--color-white);
 }
@@ -58,10 +59,11 @@ html{
     padding: 5px 0 0 0;
 }
 #currentInput {
-    height: 60%;
+    height: auto; 
+    overflow-wrap: break-word;
     font-size: 30px;
     text-align: right;
-    padding: 5px 0 0 0;
+    padding: 5px 0 15px 0;
 }
 
 #calc-btns-container {
