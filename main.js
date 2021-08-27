@@ -41,15 +41,26 @@ let answer; // latest answer
 let operatorValue;
 
 function displayToScreen(value) {
-    currentInputDisplay.innerText += value;
-    return currentInputDisplay.innerText;
+    if( inputValue !== undefined && inputValue !== null &&
+        ((inputValue.includes('.') && inputValue.length > 14) || 
+        ( !inputValue.includes('.') && inputValue.length >= 14))) {
+        alert("Can't enter more than 14 digits");
+        return currentInputDisplay.innerText;
+    }
+    else {
+        currentInputDisplay.innerText += value;
+        return currentInputDisplay.innerText;
+    }
 }
 
 function listenToNumbers() {
     const numbers = document.querySelectorAll('.number');
     numbers.forEach( number => {
         number.addEventListener('click', () => {
-            if(inputValue === undefined || inputValue === null) {
+            if(answer === "quick mafs?") {
+                clearCalc()
+            }
+            else if(inputValue === undefined || inputValue === null) {
                 currentInputDisplay.innerText = '';
             }
             inputValue = displayToScreen(number.innerText);            
@@ -61,10 +72,12 @@ function listenToOperators() {
     const operators = document.querySelectorAll('.operator');
     operators.forEach( operator => {
         operator.addEventListener('click', () => {
-            if(inputValue === undefined || inputValue == "")
-            {
+            if(inputValue === undefined || inputValue == "") {
                 //pass(operator won't show up if number is not entered)
                 //checked against the empty string because of the backspace
+            }
+            else if(answer === "quick mafs?") {
+                clearCalc()
             }
             else if(answer === undefined || answer === null) { //first ever input
                 answer = inputValue;
@@ -74,7 +87,7 @@ function listenToOperators() {
                 currentInputDisplay.innerText = answer;
             }
 
-            if((inputValue !== undefined && inputValue !== "") || (inputValue === "" && currentEquationDisplay.innderText !== ""))
+            if((inputValue !== undefined && inputValue !== "") || (inputValue === "" && currentEquationDisplay.innerText !== ""))
             {
                 operatorValue = operator.innerText;
                 inputValue = null;
@@ -87,7 +100,10 @@ function listenToOperators() {
 function listenToEqual() {
     const equals = document.querySelector('.equals');
     equals.addEventListener('click', () => {
-        if(inputValue !== undefined && inputValue !== null && answer !== undefined && answer !== null) {
+        if(answer === "quick mafs?") {
+            clearCalc()
+        }
+        else if(inputValue !== undefined && inputValue !== null && answer !== undefined && answer !== null) {
             answer = operate(operatorValue, answer, inputValue);
             currentInputDisplay.innerText = answer;
             currentEquationDisplay.innerText = answer;
@@ -96,21 +112,28 @@ function listenToEqual() {
     })
 }
 
+function clearCalc() {
+    inputValue = undefined;
+    answer = null;
+    operatorValue = null;
+    currentInputDisplay.innerText = '';
+    currentEquationDisplay.innerText = '';
+}
+
 function listenToClear() {
     const clear = document.querySelector('.clear');
     clear.addEventListener('click', () => {
-        inputValue = undefined;
-        answer = null;
-        operatorValue = null;
-        currentInputDisplay.innerText = '';
-        currentEquationDisplay.innerText = '';
+        clearCalc()
     })
 }
 
 function listenToPoint() {
     const point = document.querySelector('.point');
     point.addEventListener('click', () => {
-        if(currentInputDisplay.innerText === '') {
+        if(answer === "quick mafs?") {
+            clearCalc()
+        }
+        else if(currentInputDisplay.innerText === '') {
             displayToScreen('0.');
             inputValue += 0.0;
         }
@@ -123,7 +146,12 @@ function listenToPoint() {
 function listenToBackspace() {
     const backspace = document.querySelector('.backspace');
     backspace.addEventListener('click', () => {
-        currentInputDisplay.innerText = (currentInputDisplay.innerText).slice(0, -1); //removes last character
+        if(answer === "quick mafs?") {
+            clearCalc()
+        }
+        else {
+            currentInputDisplay.innerText = (currentInputDisplay.innerText).slice(0, -1); //removes last character
+        }
         inputValue = currentInputDisplay.innerText;
     })
 }
